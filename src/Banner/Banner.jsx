@@ -5,14 +5,17 @@ function Banner() {
     return (
         <div className='banner'>
             <div className='content'>
-                <h1 className='title'>jjjjjjjjjjjj</h1>
+                <h1 className='title'>money heist</h1>
                 <div className="buttons">
                     <button className='button'>play</button>
                     <button className='button'>mylist</button>
 
                 </div>
-                <h1 className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet aspernatur consequatur, magni ex qui accusantium impedit non inventore magnam vitae nemo alias? Eveniet reiciendis voluptatum quia quos repudiandae ratione sit.</h1>
+                <h1 className='description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod accusamus reiciendis voluptatum. Sequi neque ex non quis veniam atque dicta temporibus ullam modi perspiciatis provident quasi dolorem, deserunt quas? Magnam?
+                </h1>
             </div>
+            <div className="fade"></div>
+
 
         </div>
     )
