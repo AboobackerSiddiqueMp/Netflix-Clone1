@@ -3,12 +3,13 @@
     background-size: cover;
     height: 500px;
     color: white;
-    margin-top: 67px;
+    margin-top: 15px;
     
 }
 .content{
     padding-top: 105px;
     height: 190px;
+    padding-left: 55px;
 }
 .title{
     font-size: 3rem;
