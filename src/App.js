@@ -8,7 +8,8 @@ function App() {
     <div className="App">
       <NavBars></NavBars>
       <Banner></Banner>
-      <RowPoster></RowPoster>
+      <RowPoster ></RowPoster>
+
 
 
     </div>

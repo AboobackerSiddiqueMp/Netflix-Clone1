@@ -9,8 +9,7 @@ function Banner() {
     const[movie,setmovie]=useState()
     useEffect(() => {
         axios.get(`trending/movie/day?api_key=${API_KEY}`).then((response)=>{
-            console.log(response.data.results[0])
-            setmovie(response.data.results[0])
+            setmovie(response.data.results[Math.floor(Math.random() * 11)  ])
         })
     .catch((error)=>{
         console.log('error fech data',error)
