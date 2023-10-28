@@ -4,10 +4,10 @@ import axios from '../Axios'
 import { API_KEY, imgUrl } from '../constants/constant'
 
 
-function RowPoster() {
+function RowPoster(props) {
   const [movies, setmovie] = useState([])
   useEffect(() => {
-    axios.get(`trending/tv/day?api_key=${API_KEY}`).then((response) => {
+    axios.get(props.urls).then((response) => {
       console.log(response.data)
       setmovie(response.data.results)
     })
@@ -21,11 +21,11 @@ function RowPoster() {
 
   return (
     <div className='row'>
-      <h2 className="title">NETFLIX ORIGINALS</h2>
+      <h2 className="title">{props.title}</h2>
 
       <div className="posters">
         {movies.map((obj) => 
-          <img src={`${movies? imgUrl+obj.backdrop_path:""}`} alt="" className="poster" />
+          <img src={`${movies? imgUrl+obj.backdrop_path:""}`} alt="" className={props.isSmall?'smallPoster':'poster'}/>
 
 
         )}
