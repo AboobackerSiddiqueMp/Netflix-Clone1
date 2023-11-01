@@ -1,50 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import YouTube from 'react-youtube'
-import './RowPoster.css'
-import axios from '../Axios'
-import { API_KEY, imgUrl } from '../constants/constant'
-
+import React, { useEffect, useState } from 'react';
+import YouTube from 'react-youtube';
+import './RowPoster.css';
+import axios from '../Axios';
+import { API_KEY, imgUrl } from '../constants/constant';
 
 function RowPoster(props) {
-  const[urlId,seturlId]=useState('')
+  const [urlId, setUrlId] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
 
-  const [movies, setmovie] = useState([])
   useEffect(() => {
     axios.get(props.urls).then((response) => {
-      console.log(response.data)
-      setmovie(response.data.results)
-    })
+      console.log(response.data);
+      setMovies(response.data.results);
+    });
+  }, []);
 
-
-
-  }, [])
   const opts = {
     height: '390',
     width: '100%',
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 0,
+      autoplay: 1,
     },
   };
-  const handleMovie=(id)=>{
-    console.log(id)
-    axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then((response)=>{
-      console.log(response.data)
-      if(response.data.results.length !==0){
-        seturlId(response.data.results[0])
 
-
+  const handleMovie = (id) => {
+    console.log(id);
+    axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then((response) => {
+      console.log(response.data);
+      if (response.data.results.length !== 0) {
+        setUrlId(response.data.results[0]);
+        toggleVideoVisibility(); // Show the video
+      } else {
+        setUrlId('');
+        toggleVideoVisibility(); // Hide the video
       }
-      else{
-        seturlId('')
-      }
-    }).catch((error)=>{
-      console.log("a erroe",error)
+    }).catch((error) => {
+      console.log("An error", error);
     });
+  };
 
-
-  }
-
+  const toggleVideoVisibility = () => {
+    setIsVideoVisible(!isVideoVisible);
+  };
 
   return (
     <div className='row'>
@@ -52,17 +50,19 @@ function RowPoster(props) {
 
       <div className="posters">
         {movies.map((obj) => 
-          <img onClick={()=>handleMovie(obj.id)} src={`${movies? imgUrl+obj.backdrop_path:""}`} alt="" className={props.isSmall?'smallPoster':'poster'}/>
-
-
+          <img
+            key={obj.id}
+            onClick={() => handleMovie(obj.id)}
+            src={`${imgUrl + obj.backdrop_path}`}
+            alt=""
+            className={props.isSmall ? 'smallPoster' : 'poster'}
+          />
         )}
       </div>
-     {  urlId && <YouTube  videoId={urlId.key} opts={opts}  />  }
 
-
-
+      {isVideoVisible && urlId && <YouTube videoId={urlId.key} opts={opts} />}
     </div>
-  )
+  );
 }
 
-export default RowPoster
+export default RowPoster;
