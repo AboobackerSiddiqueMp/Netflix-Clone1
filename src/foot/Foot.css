@@ -1,0 +1,38 @@
+.footer{
+    height: 250px;
+}
+.footericons{
+    
+    color: gray;
+    font-size: 30px;
+    margin-left:300px;
+    margin-top: 50px;
+
+    
+}
+.footericons i{
+    padding: 10px;
+}
+.links{
+    color: gray;
+    font-size: 15px;
+    margin-left:300px;
+    margin-top: 20px;
+    display: flex;
+
+    
+
+
+}
+.abu{
+    padding-top: 15px;
+}
+.abu2{
+    margin-top: 300px;
+    padding-top: 20px;
+
+
+}
+table{
+    padding-left: 30px;
+}
